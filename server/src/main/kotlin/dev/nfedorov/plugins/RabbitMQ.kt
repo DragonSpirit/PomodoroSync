@@ -8,7 +8,7 @@ import dev.nfedorov.json
 import dev.nfedorov.redisClient
 import io.ktor.server.application.*
 import io.ktor.websocket.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 import kotlinx.serialization.encodeToString
 import pl.jutupe.ktor_rabbitmq.RabbitMQ
 import pl.jutupe.ktor_rabbitmq.consume
@@ -41,7 +41,7 @@ fun Application.configureRabbitMq() {
     rabbitConsumer {
         consume<Message>("queue") { body ->
             val uuid = body.uuid
-            runBlocking {
+            launch {
                 val isValid = redisClient.getDel(uuid).toBoolean()
                 if (isValid) {
                     connections.filter { it.userId == body.userKey }.forEach { it.session.send(json.encodeToString(
