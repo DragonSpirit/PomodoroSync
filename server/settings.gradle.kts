@@ -1,0 +1,1 @@
+rootProject.name = "dev.nfedorov.pomodorosync_server"
