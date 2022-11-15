@@ -18,7 +18,7 @@ data class DeviceDataModel(
 
 interface DataStorage {
     fun addUser(token: String): Long
-    fun addDevice(userId: Long, token: String)
+    fun addDevice(userId: Long, token: String): Boolean
 
     fun getUserByKey(key: String): UserDataModel?
     fun getDeviceByKey(key: String): DeviceDataModel?

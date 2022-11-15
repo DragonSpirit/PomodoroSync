@@ -23,13 +23,14 @@ object InMemoryStorage : DataStorage {
         return user.id
     }
 
-    override fun addDevice(userId: Long, token: String) {
+    override fun addDevice(userId: Long, token: String): Boolean {
         devicesList.add(DeviceDataModel(
             id = getNewDeviceId(),
             userId = userId,
             deviceKey = token,
             pushToken = null
         ))
+        return true
     }
 
     override fun getUserByKey(key: String): UserDataModel? {

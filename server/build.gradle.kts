@@ -5,6 +5,8 @@ val ktor_rabbitmq_version: String by project
 val rabbitmq_version: String by project
 val jackson_version: String by project
 val kreds_version: String by project
+val postgresql_driver_version: String by project
+val ktorm_version: String by project
 
 plugins {
     application
@@ -41,6 +43,9 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version")
     implementation("com.fasterxml.jackson.core:jackson-databind:$jackson_version")
     implementation("io.github.crackthecodeabhi:kreds:$kreds_version")
-    testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
+    implementation("org.ktorm:ktorm-core:$ktorm_version")
+    implementation("org.ktorm:ktorm-support-postgresql:$ktorm_version")
+    implementation("org.postgresql:postgresql:$postgresql_driver_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
 }
